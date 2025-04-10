@@ -112,22 +112,31 @@ public class MazeSolver {
      * @return An ArrayList of MazeCells in order from the start to end cell
      */
     public ArrayList<MazeCell> solveMazeBFS() {
-        // TODO: Use BFS to solve the maze
         // Explore the cells in the order: NORTH, EAST, SOUTH, WEST
+        // Creates a Queue containing all the cells to visit
+        // Pulls cells using FIFO
         Queue<MazeCell> toVisit = new LinkedList<MazeCell>();
+        // Sets the current cell as the start cell
         MazeCell currentCell = maze.getStartCell();
+        // Adds it to the Queue, and sets it as explored
         toVisit.add(currentCell);
         currentCell.setExplored(true);
 
+        // While the current cell is not the last cell
         while(currentCell != maze.getEndCell()){
+            // For each neighboring cell to the current cell
             for(MazeCell cell : searchHelper(currentCell)){
+                // Add the neighbor to the Queue
                 toVisit.add(cell);
+                // Set its parent as current, and set it as explored
                 cell.setParent(currentCell);
                 cell.setExplored(true);
             }
+            // Set the current cell as the next element in the Queue
             currentCell = toVisit.remove();
         }
 
+        // Returns the BFS solution
         return getSolution();
     }
 
