@@ -3,7 +3,7 @@
  * @author Ms. Namasivayam
  * @version 03/10/2023
  */
-
+// By Veronica Taira (CS2)
 public class MazeCell {
     private boolean explored;
     private boolean isWall;
